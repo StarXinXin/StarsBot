@@ -2,6 +2,7 @@ import json
 import os
 from datetime import datetime
 
+import nonebot
 import requests
 from nonebot import get_plugin_config, require, get_bots, on_command, on_regex
 from nonebot.adapters.onebot.v11 import Bot, Event, Message, PrivateMessageEvent, GroupMessageEvent, MessageSegment
@@ -286,7 +287,8 @@ async def time_signal_task():
         white_list = load_white_list("Profile/Timing/TimeOnHour/WhiteList.json")
         base_path = "Profile/Timing/TimeOnHour"
 
-        bot, = get_bots().values()
+        # bot, = get_bots().values()
+        bot = nonebot.get_bot()
 
         for folder_name in os.listdir(base_path):
             folder_path = os.path.join(base_path, folder_name)
@@ -304,6 +306,7 @@ async def time_signal_task():
 # 设置在每个整点发送信息
 for hour in range(24):
     timing.scheduled_job("cron", hour=hour, minute=0, second=0, id=f"TimeSignal{hour}")(time_signal_task)
+
 
 async def send_voice_signal(bot, group_id):
     current_hour = datetime.now().hour
