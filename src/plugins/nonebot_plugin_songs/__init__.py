@@ -17,7 +17,7 @@ from .config import Config
 
 __plugin_meta__ = PluginMetadata(
     name="nonebot_plugin_songs",
-    description="QQ音乐点歌",
+    description="QQ音乐点歌[Plus]",
     usage="点歌：/点歌 霜雪千年"
           "播放：/播放 歌曲序号",
     config=Config,
