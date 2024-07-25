@@ -1,0 +1,17 @@
+{
+  "Name": "Game",
+  "Description": "Game commands",
+  "Version": "1.0.0",
+  "Commands": {
+    "1": [
+      "文本找茬",
+      "猜谜语"
+    ],
+    "2": [
+    ]
+  },
+  "Config": {
+    "文本找茬": "正常",
+    "猜谜语": "正常"
+  }
+}

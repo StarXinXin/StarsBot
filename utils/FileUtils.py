@@ -22,7 +22,7 @@ def new_file_exists(file_path):
     return True
 
 
-def ensure_file_exists(file_path):
+def ensure_file_exists(file_path: object):
     """
     确保文件存在
     :param file_path:
@@ -33,7 +33,7 @@ def ensure_file_exists(file_path):
         return False
     return True
 
-def read_json_file(file_path):
+def read_json_file(file_path: object):
     """
     读取JSON文件，并返回其中的数据。
     :param file_path:

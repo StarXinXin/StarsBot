@@ -1,7 +1,7 @@
 [project]
 name = "StarsBot"
-version = "0.2.0"
-description = "StarsBot"
+version = "0.2.1"
+description = "欢迎来到 星辰Bot 项目！这是一款基于 Nonebot 打造的智能 QQ 机器人，旨在为用户提供丰富的功能体验。无论是获取一言的灵感，探索历史上的今天，还是穿梭60s世界，星辰Bot 为您打开了全新的交流之门。快来尝试吧！"
 readme = "README.md"
 requires-python = ">=3.8, <4.0"
 
