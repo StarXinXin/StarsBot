@@ -3,7 +3,7 @@ from nonebot_plugin_alconna import UniMessage
 from requests.exceptions import Timeout
 
 
-def make_request(url, headers=None, data=None, timeout=10, on_timeout=None):
+def make_request(url, headers=None, data=None, timeout=100, on_timeout=None):
     try:
         response = requests.post(url, headers=headers, data=data, timeout=timeout)
         # 这里假设使用POST请求，你也可以根据需要修改为GET或其他HTTP方法

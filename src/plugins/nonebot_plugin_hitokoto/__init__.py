@@ -44,22 +44,27 @@ async def _(bot: Bot, event: Event, state: T_State, true=True):
             if ids.startswith("group"):
                 parts = ids.split('_')
                 if is_group_in_whitelist(parts[1]):
-                    async with httpx.AsyncClient() as client:
-                        # timeout = Timeout(10.0, connect=20.0)  # Adjust values as needed
-                        response = await client.get("https://v1.hitokoto.cn/?encode=json&c=b&c=c&c=d&c=e&c=h&c=i&c=j&c=k&lang=cn")
-                    if response.is_error:
-                        await UniMessage("获取一言失败").send(reply_to=true)
-                        return
-                    data = response.json()
-                    msg = data["hitokoto"]
-                    add = ""
-                    if works := data["from"]:
-                        add += f"《{works}》"
-                    if from_who := data["from_who"]:
-                        add += f"{from_who}"
-                    if add:
-                        msg += f"\n{add}"
-                    await UniMessage(msg).send(reply_to=true)
+                    try:
+                        async with httpx.AsyncClient() as client:
+                            # timeout = Timeout(10.0, connect=20.0)  # Adjust values as needed
+                            response = await client.get("https://v1.hitokoto.cn/?encode=json&c=b&c=c&c=d&c=e&c=h&c=i&c=j&c=k&lang=cn", timeout=100)
+                        if response.is_error:
+                            await UniMessage("获取一言失败").send(reply_to=true)
+                            return
+                        data = response.json()
+                        msg = data["hitokoto"]
+                        add = ""
+                        if works := data["from"]:
+                            add += f"《{works}》"
+                        if from_who := data["from_who"]:
+                            add += f"{from_who}"
+                        if add:
+                            msg += f"\n{add}"
+                        await UniMessage(msg).send(reply_to=true)
+                    except httpx.ConnectTimeout:
+                        await UniMessage("获取一言失败，请求超时").send(reply_to=true)
+                    except httpx.ConnectError:
+                        await UniMessage("获取一言失败，连接错误").send(reply_to=true)
             else:
                 async with httpx.AsyncClient() as client:
                     # timeout = Timeout(10.0, connect=20.0)  # Adjust values as needed
