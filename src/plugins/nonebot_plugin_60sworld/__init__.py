@@ -5,7 +5,6 @@ from nonebot_plugin_alconna.uniseg import UniMessage
 
 import utils.AdminTool as at
 from utils.FileUtils import ensure_file_exists, read_json_file
-from utils.ImageDownloader import download_file
 from utils.RedirectResolverHttpx import RedirectResolverHttpx
 
 
